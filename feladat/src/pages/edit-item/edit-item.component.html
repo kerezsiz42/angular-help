@@ -1,0 +1,7 @@
+<h1>Edit item</h1>
+
+<div *ngIf="item; else elseBlock">
+  Id: {{ item.id }}<br />
+  Name: {{ item.name }}
+</div>
+<ng-template #elseBlock>Content to render when condition is false.</ng-template>

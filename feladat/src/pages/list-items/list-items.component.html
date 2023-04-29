@@ -1,0 +1,7 @@
+<h1>List items</h1>
+
+<ul>
+  <li *ngFor="let item of items">
+    <a routerLink="/edit-item/{{ item.id }}">Edit {{ item.name }}</a>
+  </li>
+</ul>
