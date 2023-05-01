@@ -1,19 +1,18 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { Item } from "src/model/Item";
-import { ItemService } from "src/service/item.service";
+import { County, CountyService } from "src/service/county.service";
 
 @Component({
-  templateUrl: "./edit-item.component.html",
+  templateUrl: "./add-or-edit-county.component.html",
 })
-export class EditItemPage implements OnInit, OnDestroy {
+export class AddOrEditCounty implements OnInit, OnDestroy {
   private params$?: Subscription;
-  public item?: Item;
+  public county?: County;
 
   constructor(
     private route: ActivatedRoute,
-    private itemService: ItemService,
+    private countyService: CountyService,
     private router: Router
   ) {}
 
@@ -24,12 +23,12 @@ export class EditItemPage implements OnInit, OnDestroy {
         await this.router.navigate(["/"]);
         return;
       }
-      const foundItem = this.itemService.findItemById(id);
+      const foundItem = this.countyService.findCountyById(id);
       if (foundItem === undefined) {
         await this.router.navigate(["/"]);
         return;
       }
-      this.item = foundItem;
+      this.county = foundItem;
     });
   }
 

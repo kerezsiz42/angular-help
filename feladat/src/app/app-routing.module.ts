@@ -1,16 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CreateItemPage } from "src/pages/create-item/create-item.component";
-import { EditItemPage } from "src/pages/edit-item/edit-item.component";
-import { ListItemsPage } from "src/pages/list-items/list-items.component";
-import { ViewItemPage } from "src/pages/view-item/view-item.component";
+import { AddOrEditCounty } from "src/component/add-or-edit-county/add-or-edit-county.component";
+import { ListCounties } from "src/component/list-counties/list-counties.component";
+import { ViewCounty } from "src/component/view-county/view-county.component";
 
 const routes: Routes = [
-  { path: "list-items", component: ListItemsPage },
-  { path: "create-item/:id", component: CreateItemPage },
-  { path: "edit-item/:id", component: EditItemPage },
-  { path: "view-item/:id", component: ViewItemPage },
-  { path: "**", redirectTo: "list-items" },
+  { path: "counties", component: ListCounties },
+  { path: "county/new", component: AddOrEditCounty },
+  { path: "county/:id", component: ViewCounty },
+  { path: "county/:id/edit", component: AddOrEditCounty },
+  { path: "**", redirectTo: "counties" },
 ];
 
 @NgModule({
