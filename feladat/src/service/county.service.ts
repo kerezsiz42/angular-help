@@ -13,7 +13,7 @@ export type County = {
   providedIn: "root",
 })
 export class CountyService {
-  private items: County[] = [
+  private counties: County[] = [
     {
       id: crypto.randomUUID(),
       name: "Bács-Kiskun",
@@ -64,20 +64,44 @@ export class CountyService {
     },
   ];
 
-  public getCounties(): County[] {
-    return this.items;
+  public getCounties(): Promise<County[]> {
+    const delay = Math.floor(Math.random() * 500) + 100;
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        const counties = this.counties;
+        return resolve(counties);
+      }, delay)
+    );
   }
 
-  public findCountyById(itemId: County["id"]): County | undefined {
-    return this.items.find((i) => i.id === itemId);
+  public findCountyById(countyId: County["id"]): Promise<County | undefined> {
+    const delay = Math.floor(Math.random() * 500) + 100;
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        const county = this.counties.find((county) => county.id === countyId);
+        return resolve(county);
+      }, delay)
+    );
   }
 
-  public removeCounty(itemId: County["id"]): void {
-    this.items = this.items.filter((i) => i.id !== itemId);
+  public removeCounty(itemId: County["id"]): Promise<void> {
+    const delay = Math.floor(Math.random() * 500) + 100;
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        this.counties = this.counties.filter((i) => i.id !== itemId);
+        return resolve();
+      }, delay)
+    );
   }
 
-  public addOrEditCounty(modifiedItem: County): void {
-    this.removeCounty(modifiedItem.id);
-    this.items.push(modifiedItem);
+  public addOrEditCounty(modifiedItem: County): Promise<void> {
+    const delay = Math.floor(Math.random() * 500) + 100;
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        this.removeCounty(modifiedItem.id);
+        this.counties.push(modifiedItem);
+        return resolve();
+      }, delay)
+    );
   }
 }

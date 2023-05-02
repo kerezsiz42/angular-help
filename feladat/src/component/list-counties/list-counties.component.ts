@@ -1,15 +1,23 @@
 import { Component, OnInit } from "@angular/core";
+import { AncillaryService } from "src/service/ancillary.service";
 import { County, CountyService } from "src/service/county.service";
 
 @Component({
-  templateUrl: "./list-items.component.html",
+  templateUrl: "./list-counties.component.html",
 })
 export class ListCounties implements OnInit {
-  counties: County[] = [];
+  counties?: County[];
 
-  constructor(private countyService: CountyService) {}
+  constructor(
+    private countyService: CountyService,
+    private ancillaryService: AncillaryService
+  ) {}
 
-  ngOnInit() {
-    this.counties = this.countyService.getCounties();
+  async ngOnInit() {
+    this.counties = await this.countyService.getCounties();
+  }
+
+  getIsListView() {
+    return this.ancillaryService.getIsListView();
   }
 }

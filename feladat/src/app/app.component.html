@@ -1,3 +1,26 @@
-<h1>Listing app</h1>
-
-<router-outlet></router-outlet>
+<header class="p-3 text-bg-dark">
+  <div class="container-sm d-flex justify-content-between align-items-center">
+    <a routerLink="/counties" class="h2 text-decoration-none text-white"
+      >Magyarország megyéi</a
+    >
+    <div class="d-flex">
+      <div class="p-1">
+        <button type="button" class="btn btn-success" routerLink="/county/new">
+          Hozzáadás
+        </button>
+      </div>
+      <div class="p-1">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="toggleIsListView()"
+        >
+          {{ getIsListView() ? "Lista nézet" : "Csempe nézet" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container p-3">
+  <router-outlet></router-outlet>
+</div>

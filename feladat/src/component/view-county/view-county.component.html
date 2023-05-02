@@ -1,1 +1,66 @@
-<h1>View item</h1>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <span class="modal-title h4" id="modal">Biztos ki akarod törölni?</span>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">{{ county?.name }}</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteCounty(modal)">
+      Igen
+    </button>
+  </div>
+</ng-template>
+
+<div *ngIf="county; else elseBlock">
+  <div class="card">
+    <div class="card-header p-5 d-flex justify-content-center">
+      <img
+        style="max-width: 700px"
+        src="{{ county.flag }}"
+        class="card-img-top"
+        alt="{{ county.flag }}"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ county.name }} megye</h5>
+      <p class="card-text">
+        Azonosító: {{ county.id }} <br />
+        Név: {{ county.name }} megye <br />
+        Régió: {{ county.region }} <br />
+        Népesség: {{ county.populus }} <br />
+        Székhely: {{ county.countySeat }} <br />
+      </p>
+      <div class="d-flex justify-content-between">
+        <a routerLink="/county/{{ county.id }}/edit"
+          ><div class="px-1">
+            <button type="button" class="btn btn-warning">Szerkesztés</button>
+          </div></a
+        >
+        <div class="px-1">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="openModal(content)"
+          >
+            Törlés
+          </button>
+        </div>
+        <a routerLink="/" class="btn btn-primary">Visszalépés</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseBlock
+  ><div class="text-center">
+    <div
+      class="spinner-border ms-auto h2 m-5 custom-spinner"
+      role="status"
+      aria-hidden="true"
+    ></div></div
+></ng-template>

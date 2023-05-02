@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+.custom-spinner {
+  width: 5rem;
+  height: 5rem;
+}

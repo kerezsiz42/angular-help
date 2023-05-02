@@ -23,7 +23,7 @@ export class AddOrEditCounty implements OnInit, OnDestroy {
         await this.router.navigate(["/"]);
         return;
       }
-      const foundItem = this.countyService.findCountyById(id);
+      const foundItem = await this.countyService.findCountyById(id);
       if (foundItem === undefined) {
         await this.router.navigate(["/"]);
         return;

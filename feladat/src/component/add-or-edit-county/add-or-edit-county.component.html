@@ -1,7 +1,31 @@
-<h1>Edit item</h1>
-
-<div *ngIf="item; else elseBlock">
-  Id: {{ item.id }}<br />
-  Name: {{ item.name }}
+<div *ngIf="county; else elseBlock">
+  <div class="card">
+    <div class="card-header p-5 d-flex justify-content-center">
+      <img
+        style="max-width: 700px"
+        src="{{ county.flag }}"
+        class="card-img-top"
+        alt="{{ county.flag }}"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ county.name }} megye</h5>
+      <p class="card-text">
+        Azonosító: {{ county.id }} <br />
+        Név: {{ county.name }} megye <br />
+        Régió: {{ county.region }} <br />
+        Népesség: {{ county.populus }} <br />
+        Székhely: {{ county.countySeat }} <br />
+      </p>
+    </div>
+  </div>
 </div>
-<ng-template #elseBlock>Content to render when condition is false.</ng-template>
+
+<ng-template #elseBlock
+  ><div class="text-center">
+    <div
+      class="spinner-border ms-auto h2 m-5 custom-spinner"
+      role="status"
+      aria-hidden="true"
+    ></div></div
+></ng-template>

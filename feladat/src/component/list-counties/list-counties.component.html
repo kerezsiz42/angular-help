@@ -1,7 +1,47 @@
-<h1>List items</h1>
+<div *ngIf="counties; else noData">
+  <div *ngIf="getIsListView()">
+    <div *ngFor="let county of counties">
+      <a
+        routerLink="/county/{{ county.id }}"
+        class="text-decoration-none h5 text-black"
+      >
+        <ngb-alert
+          type="warning"
+          [dismissible]="false"
+          class="d-flex justify-content-between align-items-center"
+          ><div class="text-black text-decoration-none">
+            {{ county.name }} megye
+          </div>
+        </ngb-alert>
+      </a>
+    </div>
+  </div>
+  <div
+    *ngIf="!getIsListView()"
+    class="d-flex align-content-center flex-wrap justify-content-around"
+  >
+    <div *ngFor="let county of counties" class="p-5">
+      <a
+        routerLink="/county/{{ county.id }}"
+        class="text-decoration-none h5 text-black"
+        ><div class="card" style="width: 20rem">
+          <img
+            src="{{ county.flag }}"
+            class="card-img-top"
+            alt="{{ county.flag }}"
+          />
+          <div class="card-body">{{ county.name }} megye</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <li *ngFor="let item of items">
-    <a routerLink="/edit-item/{{ item.id }}">Edit {{ item.name }}</a>
-  </li>
-</ul>
+<ng-template #noData
+  ><div class="text-center">
+    <div
+      class="spinner-border ms-auto h2 m-5 custom-spinner"
+      role="status"
+      aria-hidden="true"
+    ></div></div
+></ng-template>
